@@ -1,0 +1,154 @@
+main(){
+
+	droneque.print("Welcome to the DrawTrejectory Program");
+	droneque.print("Press A to spray a square field, Press B to spray a triangular field");
+
+	# Take input from user
+	var input = droneque.input();
+	while(input != "Q"){
+		if(input == "A"){
+			droneque.print("Please enter an edge");
+			var edge = droneque.input();
+			spraySquareField(edge);
+		}else if(input == "B"){
+			droneque.print("Please enter an edge");
+			var edge = droneque.input();
+			sprayTriangularField(edge);
+		}else{
+			droneque.print("Please enter accurate press button");
+		}
+		droneque.print("Press A to spray a square field, Press B to spray a triangular field, Press Q to quit");
+		input = droneque.input();
+	}
+
+	# For user feedback
+	droneque.print("Please rate us!!");
+	var point;
+	point = droneque.input();
+	if(point >= 7 and point <= 10){
+		droneque.print("Thank you for everything <3");
+	}else{
+		droneque.print("Please give us later feedbacks")
+	}
+
+	#------------MAIN TEST FUNCTIONS-------------
+	# Function that sprays a chemical to a square field
+	function spraySquareField(var edge){
+		# Spray on
+		droneque.spray_on();
+		for(var path = 0; path < edge; ++path){
+			droneque.horizontally_move_forward();
+		}
+		for(var path = 0; path < edge; ++path){
+			droneque.horizontally_move_towards(right);
+		}
+		for(var path = 0; path < edge; path++){
+			droneque.horizontally_move_backward();
+		}
+		for(var path = 0; path < edge; path++){
+			droneque.horizontally_move_towards(left);
+		}
+		# Spray off
+		droneque.spray_off(); 
+	}
+
+	#*
+	Function that sprays a chemical to a triangular field
+	@parameter: edge 
+	@return: int 
+	*#
+	# 
+	function sprayTriangularField(int edge){
+		# Spray on
+		droneque.spray_on();
+		# To spraying a triangular field degree will be selected as 120 so that triangle will have 60 degree
+		int degree = 120;
+		for(int path = 0; path < edge; ++path){
+			droneque.horizontally_move_forward();
+		}
+
+		droneque.turn_left(degree);
+		for(int path = 0; path < edge; ++path){
+			droneque.horizontally_move_forward();
+		}
+	
+		droneque.turn_left(degree);
+		for(int path = 0; path < edge; path++){
+			droneque.horizontally_move_forward();
+		}
+		# Spray off
+		droneque.spray_off(); 
+	}
+	#--------------AUXILIARY METHODS------------
+
+		# Variable declarations
+		int a;
+		int b = 5;
+		double c;
+		double d = 4.5;
+		string e = "4.5";
+		bool f = true;
+
+
+		# Printing inital altitude and heading of the drone
+
+		# Now drone starts taking off
+		var altitude_counter;
+
+		# 50 meters up from ground
+		while (altitude_counter < 50){
+			droneque.vertically_climb_up();
+			++altitude_counter;
+		}
+		# Spraying a square field
+		var edge = 50;
+
+  	  	# Pre increment by one edge
+    		++edge;
+
+   	 	# Pre decrement by one edge
+    		--edge;
+    
+		sprayASquareField(edge);
+
+		# Vertically declining
+		var bottom_altitude = 75;
+		var current_altitude = droneque.read_altitude();
+		while(current_altitude > bottom_altitude){
+			droneque.vertically_drop_down();
+			current_altitude--;
+		}
+
+	function checkAltitude(var altitude){
+		if(altitude >= 0 and altitude < 400){
+			droneque.print("Altitude is normal");
+		}else if(altitude >= 400 and altitude < 500){
+			droneque.print("Altitude is above the limit please do not go higher");
+		}else{
+			droneque.print("ALERT ALERT ALERT! Altitude above the limit drone will automatically descend");
+			while( altitude >= 400){
+				# Altitude decreases by 50 feet in each iteration
+				altitude -= 50;
+				droneque.vertically_drop_down();
+		}
+	}
+
+	#*
+	This function is to check whether temperature is normal or not
+	@parameter: temperature
+	@return: string
+	*#
+	function checkTemperature(var temperature){
+		var output;
+		if(temperature <= -5){
+			output = "Temperature is below standart please shut down the drone (Press W)";
+			var input = droneque.input();
+		}else if(temperature >= 50){
+			output = "Temperature is above standart please shut down the drone (Press W)";
+			var input = droneque.input();
+		}else{
+			output = "Temperatue is normal";
+		}
+		return output;
+	}
+}	
