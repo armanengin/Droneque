@@ -1,5 +1,5 @@
 # Droneque
-Droneque is a basic library system with a feature of statistics for every customer's orders. Customers can get their ordering datas for a time period that they want to know.
+Droneque is a programing languge that has been created fot drone operations.
 
 ## Droneque contains following elements
 * Main program statements (beginning of the execution),
