@@ -1,5 +1,5 @@
 # Droneque
-Droneque is a programing languge that has been created fot drone operations.
+Droneque is a programing languge that has been created for drone operations.
 
 ## Droneque contains following elements
 * Main program statements (beginning of the execution),
