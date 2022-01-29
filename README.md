@@ -1,5 +1,5 @@
 # Droneque
-ReadingIsGood is a basic library system with a feature of statistics for every customer's orders. Customers can get their ordering datas for a time period that they want to know.
+Droneque is a basic library system with a feature of statistics for every customer's orders. Customers can get their ordering datas for a time period that they want to know.
 
 ## Droneque contains following elements
 * Main program statements (beginning of the execution),
